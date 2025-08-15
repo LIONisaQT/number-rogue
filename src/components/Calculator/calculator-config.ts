@@ -286,6 +286,6 @@ export const extraButtons: Record<string, CalcButton> = {
 	// randomTarget: { uses: Infinity, details: buttonList["randomTarget"] },
 	// plusMoney: { uses: Infinity, details: buttonList["plusMoney"] },
 	// "%": { uses: Infinity, details: buttonList["%"] },
-	nAppend: { uses: Infinity, details: buttonList["nAppend"] },
-	nPrepend: { uses: Infinity, details: buttonList["nPrepend"] },
+	// nAppend: { uses: Infinity, details: buttonList["nAppend"] },
+	// nPrepend: { uses: Infinity, details: buttonList["nPrepend"] },
 };
