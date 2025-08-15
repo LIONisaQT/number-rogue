@@ -196,7 +196,7 @@ export const buttonList: Record<string, CalcButtonDetails> = {
 		affectsTarget: false,
 		weight: 0.5,
 	},
-	customPrepend: {
+	nPrepend: {
 		name: "Prepend n",
 		label: "n _",
 		description: "Prepends n to the current number.",
@@ -205,7 +205,7 @@ export const buttonList: Record<string, CalcButtonDetails> = {
 		priceModifier: 1.5,
 		weight: 0.25,
 	},
-	customAppend: {
+	nAppend: {
 		name: "Append n",
 		label: "_ n",
 		description: "Appends n to the current number.",
@@ -278,6 +278,6 @@ export const extraButtons: Record<string, CalcButton> = {
 	// randomTarget: { uses: Infinity, details: buttonList["randomTarget"] },
 	// plusMoney: { uses: Infinity, details: buttonList["plusMoney"] },
 	// "%": { uses: Infinity, details: buttonList["%"] },
-	// prepend: { uses: Infinity, details: buttonList["customPrepend"] },
-	// append: { uses: Infinity, details: buttonList["customAppend"] },
+	// nAppend: { uses: Infinity, details: buttonList["nAppend"] },
+	// nPrepend: { uses: Infinity, details: buttonList["nPrepend"] },
 };

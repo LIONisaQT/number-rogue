@@ -192,7 +192,7 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 					setNum1(Number(display) + money);
 					onEval(Number(display) + money);
 					break;
-				default:
+				default: {
 					if (value.startsWith("prepend")) {
 						const digit = value.slice("prepend".length);
 						if (/^[1-9]$/.test(digit)) {
@@ -203,11 +203,20 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 						}
 					}
 
-					setDisplay(num1 + value);
+					// TODO: Find a better solution for this
+					let modifiedValue = value;
+					if (value === "nPrepend") {
+						modifiedValue = "prepend";
+					} else if (value === "nAppend") {
+						modifiedValue = "append";
+					}
+
+					setDisplay(num1 + modifiedValue);
 					setPreviousOp(currentOp);
 					setCurrentOp(value);
 					setOpOnly(false);
 					break;
+				}
 			}
 		};
 
@@ -247,10 +256,10 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 				case "power":
 					result = Math.pow(num1, n2);
 					break;
-				case "prepend":
+				case "nPrepend":
 					result = Number(n2.toString() + num1.toString());
 					break;
-				case "append":
+				case "nAppend":
 					result = Number(num1.toString() + n2.toString());
 					break;
 				default:
