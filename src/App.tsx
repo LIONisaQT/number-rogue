@@ -35,6 +35,33 @@ function App() {
 		};
 	}, [playBgm, stop]);
 
+	useEffect(() => {
+		const handleVisibilityChange = () => {
+			if (document.hidden) {
+				pause();
+			} else {
+				playBgm();
+			}
+		};
+
+		const handlePauseAudio = () => {
+			pause();
+		};
+
+		const handleResumeAudio = () => {
+			playBgm();
+		};
+
+		document.addEventListener("visibilitychange", handleVisibilityChange);
+		window.addEventListener("blur", handlePauseAudio);
+		window.addEventListener("focus", handleResumeAudio);
+		return () => {
+			document.removeEventListener("visibilitychange", handleVisibilityChange);
+			window.removeEventListener("blur", handlePauseAudio);
+			window.removeEventListener("focus", handleResumeAudio);
+		};
+	}, [pause, playBgm]);
+
 	const changeTrack = useCallback((isBoss: boolean) => {
 		// sound.fade(0, 0.5, 1000);
 		setTrack(isBoss ? overtrip : deepWithin);
