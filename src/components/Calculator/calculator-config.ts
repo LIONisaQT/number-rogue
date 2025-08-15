@@ -48,7 +48,7 @@ export const buttonList: Record<string, CalcButtonDetails> = {
 	"5": {
 		name: "Five",
 		label: "5",
-		description: "Go.",
+		description: "🖐️",
 		defaultUses: 2,
 	},
 	"6": {
