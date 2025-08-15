@@ -14,35 +14,34 @@
 		gap: 20px;
 		width: 100%;
 
-		.seed-container {
-			.seed {
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				gap: 4px;
+		.seed {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 8px;
 
-				.seed-input {
-					background: var(--darker);
-					color: var(--light);
-					font-size: 14pt;
-					border-radius: 4px;
-					padding: 4px 8px;
+			.seed-input {
+				background: var(--darker);
+				color: var(--light);
+				font-size: 14pt;
+				border-radius: 4px;
+				padding: 4px 8px;
+				width: 100%;
 
-					&:focus {
-						outline: none;
-					}
+				&:focus {
+					outline: none;
 				}
+			}
 
-				.seed-button {
-					padding: 6px 8px;
-					display: inline-flex;
-					background: var(--light);
-					transition: all 0.2s ease;
+			.seed-button {
+				padding: 6px 8px;
+				display: inline-flex;
+				background: var(--light);
+				transition: all 0.2s ease;
 
-					&:hover {
-						cursor: pointer;
-						filter: brightness(0.8);
-					}
+				&:hover {
+					cursor: pointer;
+					filter: brightness(0.8);
 				}
 			}
 		}
