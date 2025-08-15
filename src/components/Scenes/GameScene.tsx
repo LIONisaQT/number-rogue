@@ -371,7 +371,7 @@ function GameScene({
 						</section>
 					</section>
 					<button className="restart-button" onClick={restartRound}>
-						Press to restart round
+						Restart round
 					</button>
 				</section>
 				<section className="target-text-container">
