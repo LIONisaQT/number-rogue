@@ -125,6 +125,13 @@ export const buttonList: Record<string, CalcButtonDetails> = {
 		defaultUses: 5,
 		priceModifier: 0.25,
 	},
+	backspace: {
+		name: "Backspace",
+		label: "🔙",
+		description: "Does not undo monetary losses from bosses.",
+		defaultUses: Infinity,
+		affectsTarget: true,
+	},
 
 	// Special
 	power: {
@@ -249,7 +256,7 @@ const calcLayout = [
 	["7", "8", "9", "+"],
 	["4", "5", "6", "-"],
 	["1", "2", "3", "*"],
-	["battery", "0", "equals", "/"],
+	["backspace", "0", "equals", "/"],
 ] as const;
 
 export const calcOrder = calcLayout.flat();
@@ -279,6 +286,6 @@ export const extraButtons: Record<string, CalcButton> = {
 	// randomTarget: { uses: Infinity, details: buttonList["randomTarget"] },
 	// plusMoney: { uses: Infinity, details: buttonList["plusMoney"] },
 	// "%": { uses: Infinity, details: buttonList["%"] },
-	// nAppend: { uses: Infinity, details: buttonList["nAppend"] },
-	// nPrepend: { uses: Infinity, details: buttonList["nPrepend"] },
+	nAppend: { uses: Infinity, details: buttonList["nAppend"] },
+	nPrepend: { uses: Infinity, details: buttonList["nPrepend"] },
 };
