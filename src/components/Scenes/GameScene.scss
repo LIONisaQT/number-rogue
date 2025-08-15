@@ -73,9 +73,7 @@
 
 				.stat-value {
 					font-size: 40pt;
-					font-weight: 900;
-					-webkit-text-stroke-width: 2px;
-					color: transparent;
+					font-weight: bold;
 				}
 			}
 
@@ -94,15 +92,15 @@
 		}
 
 		.neutral {
-			-webkit-text-stroke-color: var(--cyan);
+			color: var(--cyan);
 		}
 
 		.debt {
-			-webkit-text-stroke-color: var(--red);
+			color: var(--red);
 		}
 
 		.positive {
-			-webkit-text-stroke-color: var(--green);
+			color: var(--green);
 		}
 
 		.target-text-container {
