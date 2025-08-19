@@ -11,6 +11,7 @@ import "./Calculator.scss";
 import {
 	getUpdatedUses,
 	removeLastInstance,
+	removeZeroUses,
 	swapDigits,
 	trimToValidInteger,
 } from "../../util/util-methods";
@@ -163,6 +164,7 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 
 		const operationClicked = (value: string) => {
 			setPreviousOp(currentOp);
+			// setExtras((prev) => removeZeroUses({ ...prev }));
 
 			switch (value) {
 				case "equals":
@@ -199,12 +201,14 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 				case "randomTarget":
 					modifyTarget(value);
 					onEval(num1);
+					setExtras((prev) => removeZeroUses({ ...prev }));
 					break;
 				case "swapCurrent": {
 					const newNum = swapDigits(Number(trimToValidInteger(display)));
 					setDisplay(newNum.toString());
 					setNum1(newNum);
 					onEval(newNum);
+					setExtras((prev) => removeZeroUses({ ...prev }));
 					break;
 				}
 				case "randomCurrent": {
@@ -212,6 +216,7 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 					setDisplay(newNum.toString());
 					setNum1(newNum);
 					onEval(newNum);
+					setExtras((prev) => removeZeroUses({ ...prev }));
 					break;
 				}
 				case "increment": {
@@ -219,6 +224,7 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 					setDisplay((Number(newNum) + 1).toString());
 					setNum1(Number(newNum) + 1);
 					onEval(Number(newNum) + 1);
+					setExtras((prev) => removeZeroUses({ ...prev }));
 					break;
 				}
 				case "decrement": {
@@ -226,6 +232,7 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 					setDisplay((Number(newNum) - 1).toString());
 					setNum1(Number(newNum) - 1);
 					onEval(Number(newNum) - 1);
+					setExtras((prev) => removeZeroUses({ ...prev }));
 					break;
 				}
 				case "plusMoney": {
@@ -233,6 +240,7 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 					setDisplay((Number(newNum) + money).toString());
 					setNum1(Number(newNum) + money);
 					onEval(Number(newNum) + money);
+					setExtras((prev) => removeZeroUses({ ...prev }));
 					break;
 				}
 				default: {
@@ -243,6 +251,7 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 							setDisplay(digit + newNum);
 							setNum1(Number(digit + newNum));
 							onEval(Number(digit + newNum));
+							setExtras((prev) => removeZeroUses({ ...prev }));
 							break;
 						}
 					}
@@ -310,6 +319,7 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 			setCurrentOp("");
 			setOpOnly(true);
 			onEval(result);
+			setExtras((prev) => removeZeroUses({ ...prev }));
 		};
 
 		const getIsDisabled = (key: string) => {
