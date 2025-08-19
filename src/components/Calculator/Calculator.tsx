@@ -326,26 +326,29 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 			if (enableButtons) return true;
 			if (bannedNum?.toString() === key) return true;
 
-			if (key === "backspace") {
-				return currentOp === "" && num2 === "";
-			}
+			switch (key) {
+				case "backspace":
+					return currentOp === "" && num2 === "";
+				case "equals":
+					return currentOp === "" || num2 === "";
+				case "nPrepend":
+					return prevKey === "nPrepend";
+				case "nAppend":
+					return prevKey === "nAppend";
+				default:
+					// If last key was a number, disable operators
+					if (
+						!isNaN(Number(prevKey)) &&
+						isNaN(Number(key)) &&
+						key !== "equals" &&
+						key !== "battery"
+					) {
+						return true;
+					}
 
-			if (key === "equals") {
-				return currentOp === "" || num2 === "";
+					// Enable only operators
+					return !isNaN(Number(key)) && opOnly;
 			}
-
-			// If last key was a number, disable operators
-			if (
-				!isNaN(Number(prevKey)) &&
-				isNaN(Number(key)) &&
-				key !== "equals" &&
-				key !== "battery"
-			) {
-				return true;
-			}
-
-			// Enable only operators
-			return !isNaN(Number(key)) && opOnly;
 		};
 
 		return (
