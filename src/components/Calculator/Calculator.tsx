@@ -12,6 +12,7 @@ import {
 	getUpdatedUses,
 	removeLastInstance,
 	swapDigits,
+	trimToValidInteger,
 } from "../../util/util-methods";
 import { type CalcButton, calcOrder } from "./calculator-config";
 import { BossType } from "../boss/modifiers";
@@ -161,6 +162,8 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 		};
 
 		const operationClicked = (value: string) => {
+			setPreviousOp(currentOp);
+
 			switch (value) {
 				case "equals":
 					if (num2 === "") return;
@@ -198,7 +201,7 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 					onEval(num1);
 					break;
 				case "swapCurrent": {
-					const newNum = swapDigits(Number(display));
+					const newNum = swapDigits(Number(trimToValidInteger(display)));
 					setDisplay(newNum.toString());
 					setNum1(newNum);
 					onEval(newNum);
@@ -211,34 +214,40 @@ const Calculator = forwardRef<CalculatorHandle, CalculatorProps>(
 					onEval(newNum);
 					break;
 				}
-				case "increment":
-					setDisplay((Number(display) + 1).toString());
-					setNum1(Number(display) + 1);
-					onEval(Number(display) + 1);
+				case "increment": {
+					const newNum = trimToValidInteger(display);
+					setDisplay((Number(newNum) + 1).toString());
+					setNum1(Number(newNum) + 1);
+					onEval(Number(newNum) + 1);
 					break;
-				case "decrement":
-					setDisplay((Number(display) - 1).toString());
-					setNum1(Number(display) - 1);
-					onEval(Number(display) - 1);
+				}
+				case "decrement": {
+					const newNum = trimToValidInteger(display);
+					setDisplay((Number(newNum) - 1).toString());
+					setNum1(Number(newNum) - 1);
+					onEval(Number(newNum) - 1);
 					break;
-				case "plusMoney":
-					setDisplay((Number(display) + money).toString());
-					setNum1(Number(display) + money);
-					onEval(Number(display) + money);
+				}
+				case "plusMoney": {
+					const newNum = trimToValidInteger(display);
+					setDisplay((Number(newNum) + money).toString());
+					setNum1(Number(newNum) + money);
+					onEval(Number(newNum) + money);
 					break;
+				}
 				default: {
 					if (value.startsWith("prepend")) {
 						const digit = value.slice("prepend".length);
 						if (/^[1-9]$/.test(digit)) {
-							setDisplay(digit + display);
-							setNum1(Number(digit + display));
-							onEval(Number(digit + display));
+							const newNum = trimToValidInteger(display);
+							setDisplay(digit + newNum);
+							setNum1(Number(digit + newNum));
+							onEval(Number(digit + newNum));
 							break;
 						}
 					}
 
 					setDisplay(num1 + value);
-					setPreviousOp(currentOp);
 					setCurrentOp(value);
 					setOpOnly(false);
 					break;

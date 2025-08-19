@@ -34,3 +34,10 @@ export function removeLastInstance(str1: string, str2: string) {
 	if (index === -1) return str1; // not found
 	return str1.slice(0, index) + str1.slice(index + str2.length);
 }
+
+export function trimToValidInteger(s: string): string {
+	if (!isNaN(Number(s))) return s;
+
+	const newStr = s.match(/^-?\d+/);
+	return newStr ? newStr[0] : "";
+}
